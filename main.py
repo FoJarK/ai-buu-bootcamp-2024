@@ -27,11 +27,11 @@ from contextlib import asynccontextmanager
 app = FastAPI()
 
 # ข้อมูล token และ channel secret สำหรับ LINE
-ACCESS_TOKEN = os.getenv("LINE_ACCESS_TOKEN", "")
-CHANNEL_SECRET = os.getenv("LINE_CHANNEL_SECRET", "")
+ACCESS_TOKEN = os.getenv("LINE_ACCESS_TOKEN", "0SnV8EBOC4kYpo/JNl6ZGyIIyXr6bfdmLyoDawtcXcDA3l+Y5NEfqnECI/OL/WDQ9Egtf8Wg+sDo8q3KUZslCNKLfSF/JXg/K9Bct+yo1/MzyjQbHNWxv2h+8W/9nxHfGX8L04bRKp8NTGTCdBfojwdB04t89/1O/w1cDnyilFU=")
+CHANNEL_SECRET = os.getenv("LINE_CHANNEL_SECRET", "36e75da0f60445939fa196c492f0d67b")
 
 # ข้อมูล Gemini api key
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyC0bfv7Mod4Z_HyXExkDD_brBZfZbTsEKc")
 
 # การเชื่อมต่อ และตั้งค่าข้อมูลเพื่อเรียกใช้งาน LINE Messaging API
 configuration = Configuration(access_token=ACCESS_TOKEN)
@@ -240,10 +240,11 @@ gemini = GeminiRAGSystem(
 async def lifespan(app: FastAPI):
     # ข้อมูลตัวอย่างที่ใช้สำหรับ Gemini
     sample_documents = [
-        "จิรภัทร ทำดี คือ ชายหนุ่มที่มีความสามารถในการเขียนโปรแกรมที่มาจากบริษัท ClickNext ที่เป็นบริษัทด้านการพัฒนาโปรแกรมที่มีชื่อเสียง",
-        "จิรภัทร ทำดี มีชื่อเล่นว่า ปาล์ม เกิดวันที่ 25 มกราคม 2555 ที่จังหวัดสระบุรี ศึกษาจบจากมหาวิทยาลัยบูรพา สาขาวิศวกรรมคอมพิวเตอร์",
+        "จักรกฤษณ์ นกเลิศพันธุ์ คือ ชายหนุ่มที่มีความสามารถในการนอน โดยวันนึงเค้าสามารถนอนได้มากกว่า 14ชม ต่อวัน",
+        "จักรกฤษณ์ นกเลิศพันธุ์ มีชื่อเล่นว่า โฟร์ เกิดวันที่ 18 มีนาคม 2546 ที่จังหวัดจันเจ้าบุรี ศึกษาจบจากมหาวิทยาลัยบูรพา สาขาวิศวกรรมคอมพิวเตอร์",
         "งาน BUU-Bootcamp-2024 จัดที่มหาวิทยาลัยบูรพา ในวันที่ 25 มกราคม ปีค.ศ.2024 โดยมีการจัดกิจกรรมต่าง ๆ ที่เกี่ยวข้องกับการพัฒนาซอฟต์แวร์ เวลา 9:00 น. - 16:00 น.",
-        "มหาวิทยาลัยบูรพา สาขาวิชาAI ปีการศึกษา 2565 มีนักศึกษาจำนวน 100 คน มีอาจารย์ที่ปรึกษา 10 คน"
+        "มหาวิทยาลัยบูรพา สาขาวิชาAI ปีการศึกษา 2565 มีนักศึกษาจำนวน 100 คน มีอาจารย์ที่ปรึกษา 10 คน",
+        "ClickNext team AI ที่มาจัดงาน BUU-Bootcamp-2024 โดยมีพี่ปาล์ม และพี่เจ๋ง เป็น Dev พี่ดาวกับพี่ออย จะทําหน้าที่ BA และโดยจะมีพี่ชวนเป็น Managing Director"
     ]
     
     # เพิ่มข้อมูลตัวอย่างลงใน Gemini
